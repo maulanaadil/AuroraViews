@@ -39,6 +39,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
+                'data' => null
             ], 400);
         }
 
@@ -74,6 +75,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
+                'data' => null
             ], 400);
         }
 
@@ -132,6 +134,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
+                'data' => null
             ], 400);
         }
 
@@ -141,6 +144,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data petugas tidak ditemukan',
+                'data' => null
             ], 400);
         }
 
@@ -162,6 +166,7 @@ class PetugasController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal diubah',
+            'data' => null
         ], 400);
     }
 
@@ -169,9 +174,7 @@ class PetugasController extends Controller
         $petugas_exist = MWriter::find($id);
 
         if ($petugas_exist) {
-
             MWriter::where('writer_id', $id)->delete();
-            
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil dihapus',
@@ -181,7 +184,37 @@ class PetugasController extends Controller
         return response()->json([
                 'status' => 'error',
                 'message' => 'Data petugas tidak ditemukan',
+                'data' => null
             ], 400);
+    }
+
+    public function deleteBulkPetugas(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'data' => 'required|array',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+                'data' => null
+            ], 400);
+        }
+
+        $data_petugas = MWriter::whereIn('writer_id', $request->data)->delete();
+
+        if ($data_petugas) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data petugas berhasil dihapus',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Data petugas gagal dihapus',
+            'data' => null
+        ], 400);
     }
 }
 
