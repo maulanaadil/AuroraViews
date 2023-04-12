@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
     public function login(Request $request){
     	$validator = Validator::make($request->all(), [
             'username'      => 'required',
@@ -72,20 +68,23 @@ class AuthController extends Controller
         if ($user) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'user has been registered',
+                'message' => 'user sudah terdaftar',
                 'data' => $user
             ], 201);
         }
 
         return response()->json([
             'status' => 'error',
-            'message' => 'failed to register user',
+            'message' => 'gagal mendaftarkan user',
         ], 400 );
     }
 
     public function logout() {
-        auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        auth()->guard('api')->logout();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'user telah keluar'
+        ]);
     }
 
     public function refresh()
