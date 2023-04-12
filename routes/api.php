@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AlasanController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
@@ -48,6 +49,14 @@ Route::group([
             Route::get('/data_jalan', [PemetaanPetugasController::class, 'getDataJalan']);
             Route::post('/add', [PemetaanPetugasController::class, 'addPemetaanPetugas']);
             Route::delete('/{id}', [PemetaanPetugasController::class, 'deletePemetaanPetugas']);
+        });
+        
+        Route::prefix('alasan')->group(function () {
+            Route::get('/', [AlasanController::class, 'getAllAlasan']);
+            Route::post('/add', [AlasanController::class, 'addAlasan']);
+            Route::get('/{id}', [AlasanController::class, 'getAlasanById']);
+            Route::post('/{id}/update', [AlasanController::class, 'updateAlasan']);
+            Route::delete('/{id}', [AlasanController::class, 'deleteAlasan']);
         });
     });
 });
