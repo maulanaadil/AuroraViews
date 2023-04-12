@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,15 @@ Route::group([
             Route::post('/{id}/update', [UsersController::class, 'updateUser']);
             Route::delete('/{id}', [UsersController::class, 'deleteUser']);
             Route::post('/bulk_delete', [UsersController::class, 'deleteBulkUser']);
+        });
+
+        Route::prefix('pemetaan_petugas')->group(function () {
+            Route::get('/select_regional', [PemetaanPetugasController::class, 'getSelectRegional']);
+            Route::get('/select_blocks', [PemetaanPetugasController::class, 'getSelectBlocks']);
+            Route::get('/area_petugas', [PemetaanPetugasController::class, 'getAreaByPetugasId']);
+            Route::get('/data_jalan', [PemetaanPetugasController::class, 'getDataJalan']);
+            Route::post('/add', [PemetaanPetugasController::class, 'addPemetaanPetugas']);
+            Route::delete('/{id}', [PemetaanPetugasController::class, 'deletePemetaanPetugas']);
         });
     });
 });

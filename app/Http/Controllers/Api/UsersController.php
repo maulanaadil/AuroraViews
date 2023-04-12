@@ -81,7 +81,6 @@ class UsersController extends Controller
         ], 400);
     }
 
-
     public function getUserById($id) {
         $data_user = User::find($id);
 
