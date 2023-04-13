@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AlasanController;
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\UsersController;
@@ -57,6 +58,12 @@ Route::group([
             Route::get('/{id}', [AlasanController::class, 'getAlasanById']);
             Route::post('/{id}/update', [AlasanController::class, 'updateAlasan']);
             Route::delete('/{id}', [AlasanController::class, 'deleteAlasan']);
+        });
+
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/analytics', [DashboardController::class, 'getAnalytics']);
+            Route::get('/analytics_price', [DashboardController::class, 'getAnalyticCost']);
+            Route::get('/analytics_pencatatan', [DashboardController::class, 'getAnalyticsPencatatan']);
         });
     });
 });
