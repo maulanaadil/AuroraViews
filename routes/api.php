@@ -5,6 +5,7 @@ use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\LaporanAnomaliController;
+use App\Http\Controllers\Api\OtorisasiController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\UsersController;
@@ -82,6 +83,12 @@ Route::group([
             Route::get('/export_laporan_lebih_tgl', [LaporanAnomaliController::class, 'exportexcel1Action4']);
             Route::get('/select_regional', [LaporanAnomaliController::class, 'selectRegionalAction']);
             Route::get('/select_block', [LaporanAnomaliController::class, 'selectBlocksAction']);
+        });
+
+        Route::prefix('otorisasi')->group(function () {
+            Route::get('/', [OtorisasiController::class, 'getAllOtorisasi']);
+            Route::post('/add', [OtorisasiController::class, 'addOtorisasi']);
+            Route::delete('/{id}', [OtorisasiController::class, 'deleteOtorisasi']);
         });
     });
 });
