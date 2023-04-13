@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AlasanController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\LaporanAnomaliController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\UsersController;
@@ -72,6 +73,15 @@ Route::group([
             Route::get('/search', [BacaMeterController::class, 'cariDataBacaMeter']);
             Route::get('/info_pelanggan', [BacaMeterController::class, 'divinfopelangganAction']);
             Route::get('/longlat_pelanggan', [BacaMeterController::class, 'divmapAction']);
+        });
+
+        Route::prefix('laporan_anomali')->group(function () {
+            Route::get('/export_laporan_selisih_tgl', [LaporanAnomaliController::class, 'exportexcel1Action']);
+            Route::get('/export_laporan_pemakaian', [LaporanAnomaliController::class, 'exportexcel1Action2']);
+            Route::get('/export_laporan_pemakaian_sama', [LaporanAnomaliController::class, 'exportexcel1Action3']);
+            Route::get('/export_laporan_lebih_tgl', [LaporanAnomaliController::class, 'exportexcel1Action4']);
+            Route::get('/select_regional', [LaporanAnomaliController::class, 'selectRegionalAction']);
+            Route::get('/select_block', [LaporanAnomaliController::class, 'selectBlocksAction']);
         });
     });
 });
