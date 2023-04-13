@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AlasanController;
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
@@ -64,6 +65,13 @@ Route::group([
             Route::get('/analytics', [DashboardController::class, 'getAnalytics']);
             Route::get('/analytics_price', [DashboardController::class, 'getAnalyticCost']);
             Route::get('/analytics_pencatatan', [DashboardController::class, 'getAnalyticsPencatatan']);
+        });
+
+        Route::prefix('baca_meter')->group(function () {
+            Route::get('/', [BacaMeterController::class, 'index']);
+            Route::get('/search', [BacaMeterController::class, 'cariDataBacaMeter']);
+            Route::get('/info_pelanggan', [BacaMeterController::class, 'divinfopelangganAction']);
+            Route::get('/longlat_pelanggan', [BacaMeterController::class, 'divmapAction']);
         });
     });
 });
