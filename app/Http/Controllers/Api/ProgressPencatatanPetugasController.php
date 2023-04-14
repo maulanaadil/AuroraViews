@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class ProgressPencatatanPetugas extends Controller
+class ProgressPencatatanPetugasController extends Controller
 {
     /**
      * @error

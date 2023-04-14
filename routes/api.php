@@ -8,8 +8,8 @@ use App\Http\Controllers\Api\LaporanAnomaliController;
 use App\Http\Controllers\Api\OtorisasiController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
-use App\Http\Controllers\Api\ProgressPencatatanMeter;
-use App\Http\Controllers\Api\ProgressPencatatanPetugas;
+use App\Http\Controllers\Api\ProgressPencatatanMeterController;
+use App\Http\Controllers\Api\ProgressPencatatanPetugasController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,11 +94,11 @@ Route::group([
         });
 
         Route::prefix('progress_pencatatan_meter')->group(function () {
-            Route::get('/', [ProgressPencatatanMeter::class, 'getProgressPercabang']);
+            Route::get('/', [ProgressPencatatanMeterController::class, 'getProgressPercabang']);
         });
 
         Route::prefix('progress_pencatatan_petugas')->group(function () {
-            Route::get('/', [ProgressPencatatanPetugas::class, 'getProgressPencatatan']);
+            Route::get('/', [ProgressPencatatanPetugasController::class, 'getProgressPencatatan']);
         });
     });
 });
