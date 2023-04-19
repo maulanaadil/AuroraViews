@@ -8,7 +8,7 @@ return [
     
     /**
      * You can turn on or off the indexing of specific types
-     * of classes. By default, LTU processes only controllers 
+     * of classes. By default, LTU processes only controllers `
      * and models.
      */
     'casts'         => false,
@@ -36,8 +36,8 @@ return [
      * For more information: https://github.com/skanaar/nomnoml
      */
     'style' => [
-        'background' => '#071013',
-        'stroke'     => '#EBEBEB',
+        'background' => '#FFFF',
+        'stroke'     => '#000',
         'arrowSize'  => 1,
         'bendSize'   => 0.3,
         'direction'  => 'down',
@@ -45,7 +45,7 @@ return [
         'edgeMargin' => 0,
         'gravity'    => 1,
         'edges'      => 'rounded',
-        'fill'       => '#3A6EA5',
+        'fill'       => '#FFFF',
         'fillArrows' => false,
         'font'       => 'Calibri',
         'fontSize'   => 12,
