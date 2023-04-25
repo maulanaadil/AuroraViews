@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Validator;
 
 class PemetaanPetugasController extends Controller
 {
-    public function getSelectRegional(Request $request) {
+    public function getSelectRegional(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
         ]);
@@ -23,28 +24,29 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
-        
+
         $data = DB::select("CALL sp_master_wilayah_get($request->id);");
 
         if ($data) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data regional berhasil diambil',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data regional gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function getSelectBlocks(Request $request) {
+    public function getSelectBlocks(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
         ]);
@@ -53,7 +55,7 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -63,18 +65,19 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data blok berhasil diambil',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data blok gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function getAreaByPetugasId(Request $request) {
+    public function getAreaByPetugasId(Request $request)
+    {
         $block_ids = [];
 
         $validator = Validator::make($request->all(), [
@@ -85,17 +88,17 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $data_petugas = MWriter::where('writer_id', $request->petugas_id)->first();
 
-        if (!$data_petugas) {
+        if (! $data_petugas) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data petugas tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -112,24 +115,20 @@ class PemetaanPetugasController extends Controller
                 'message' => 'Data blocks berhasil diambil',
                 'data' => [
                     'petugas' => $data_petugas,
-                    'area' => $data_blocks
-                ]
+                    'area' => $data_blocks,
+                ],
             ], 200);
         }
-        
+
         return response()->json([
             'status' => 'error',
             'message' => 'Data area petugas gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    /**
-     * Error Procedure on database missing.
-     * @todo 
-     * Ask ijay for procedure database. (sp_master_petugasarea_cekblock)
-     */
-    public function getDataJalan(Request $request) {
+    public function getDataJalan(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer',
             'block_id' => 'required|integer',
@@ -139,28 +138,29 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $data = DB::select("call sp_master_petugasarea_cekblock($request->id, $request->block_id)");
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data jalan gagal diambil',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         return response()->json([
             'status' => 'success',
             'message' => 'Data jalan berhasil diambil',
-            'data' => $data
+            'data' => $data,
         ], 200);
     }
 
-    public function addPemetaanPetugas(Request $request) {
+    public function addPemetaanPetugas(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'petugas_id' => 'required|integer',
             'block_id' => 'required|integer',
@@ -174,43 +174,43 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $petugas_exists = MWriter::find($request->petugas_id);
-        if (!$petugas_exists) {
+        if (! $petugas_exists) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data petugas tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $block_exists = Block::find($request->block_id);
-        if (!$block_exists) {
+        if (! $block_exists) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data blok tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $regional_exists = Regional::find($request->rgn_id);
-        if (!$regional_exists) {
+        if (! $regional_exists) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data regional tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $office_exists = Office::find($request->of_id);
-        if (!$office_exists) {
+        if (! $office_exists) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data office tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -218,7 +218,7 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Tanggal download tidak boleh lebih besar dari tanggal maksimal upload',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -235,18 +235,19 @@ class PemetaanPetugasController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data pemetaan petugas berhasil ditambahkan',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data pemetaan petugas gagal ditambahkan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function deletePemetaanPetugas($id) {
+    public function deletePemetaanPetugas($id)
+    {
         $pemetaan_petugas_exists = MWriterArea::find($id);
 
         if ($pemetaan_petugas_exists) {
@@ -257,11 +258,11 @@ class PemetaanPetugasController extends Controller
                 'message' => 'Data pemetaan petugas berhasil dihapus',
             ], 200);
         }
-        
+
         return response()->json([
             'status' => 'error',
             'message' => 'Data pemetaan petugas tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 }

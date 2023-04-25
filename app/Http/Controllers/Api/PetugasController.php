@@ -10,25 +10,27 @@ use Illuminate\Support\Facades\Validator;
 
 class PetugasController extends Controller
 {
-    public function getAllPetugas() {
+    public function getAllPetugas()
+    {
         $data_petugas = DB::select('CALL sp_master_petugas_load();');
 
         if ($data_petugas) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil diambil',
-                'data' => $data_petugas
+                'data' => $data_petugas,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function getAllPetugasByName(Request $request) {
+    public function getAllPetugasByName(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'search' => 'string|max:255',
             'page' => 'integer',
@@ -39,30 +41,30 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
-        $data_petugas = MWriter::where('writer_name', 'like', '%' . $request->search . '%')
+        $data_petugas = MWriter::where('writer_name', 'like', '%'.$request->search.'%')
             ->paginate($request->limit);
-
 
         if ($data_petugas) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil diambil',
-                'data' => $data_petugas
+                'data' => $data_petugas,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function addPetugas(Request $request) {
+    public function addPetugas(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'writer_name' => 'required|string|max:255',
             'notelp' => 'required|string|max:255',
@@ -75,7 +77,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -91,37 +93,38 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil ditambahkan',
-                'data' => $data_petugas
+                'data' => $data_petugas,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal ditambahkan',
-            'data' => null
+            'data' => null,
         ], 400);
-
     }
 
-    public function getPetugasById($id) {
+    public function getPetugasById($id)
+    {
         $data_petugas = MWriter::find($id);
 
         if ($data_petugas) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil ditemukan',
-                'data' => $data_petugas
+                'data' => $data_petugas,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function updatePetugas(Request $request, $id) {
+    public function updatePetugas(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'writer_name' => 'required|string|max:255',
             'notelp' => 'required|string|max:255',
@@ -134,17 +137,17 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $petugas_exist = MWriter::find($id);
-        
-        if (!$petugas_exist) {
+
+        if (! $petugas_exist) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data petugas tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -166,15 +169,17 @@ class PetugasController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal diubah',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function deletePetugas($id) {
+    public function deletePetugas($id)
+    {
         $petugas_exist = MWriter::find($id);
 
         if ($petugas_exist) {
             MWriter::where('writer_id', $id)->delete();
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data petugas berhasil dihapus',
@@ -182,13 +187,14 @@ class PetugasController extends Controller
         }
 
         return response()->json([
-                'status' => 'error',
-                'message' => 'Data petugas tidak ditemukan',
-                'data' => null
-            ], 400);
+            'status' => 'error',
+            'message' => 'Data petugas tidak ditemukan',
+            'data' => null,
+        ], 400);
     }
 
-    public function deleteBulkPetugas(Request $request) {
+    public function deleteBulkPetugas(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
         ]);
@@ -197,7 +203,7 @@ class PetugasController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -213,8 +219,7 @@ class PetugasController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data petugas gagal dihapus',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 }
-

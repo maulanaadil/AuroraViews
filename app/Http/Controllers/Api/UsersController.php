@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         $data_users = User::all();
 
         return response()->json([
             'status' => 'success',
             'message' => 'Data users berhasil diambil',
-            'data' => $data_users
+            'data' => $data_users,
         ], 200);
     }
 
-    public function getAllUsersByName(Request $request) {
+    public function getAllUsersByName(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'search' => 'string|max:255',
             'page' => 'integer',
@@ -34,17 +35,18 @@ class UsersController extends Controller
             ], 400);
         }
 
-        $data_users = User::where('nama', 'like', '%' . $request->search . '%')
+        $data_users = User::where('nama', 'like', '%'.$request->search.'%')
             ->paginate($request->limit);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Data users berhasil diambil',
-            'data' => $data_users
+            'data' => $data_users,
         ], 200);
     }
 
-    public function addUser(Request $reqeust) {
+    public function addUser(Request $reqeust)
+    {
         $validator = Validator::make($reqeust->all(), [
             'nama' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
@@ -70,36 +72,38 @@ class UsersController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data user berhasil ditambahkan',
-                'data' => $data_user
+                'data' => $data_user,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data user gagal ditambahkan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function getUserById($id) {
+    public function getUserById($id)
+    {
         $data_user = User::find($id);
 
         if ($data_user) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data user berhasil diambil',
-                'data' => $data_user
+                'data' => $data_user,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data user gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function updateUser(Request $request, $id) {
+    public function updateUser(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
@@ -116,11 +120,11 @@ class UsersController extends Controller
 
         $user_exist = User::find($id);
 
-        if (!$user_exist) {
+        if (! $user_exist) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data user tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -135,37 +139,39 @@ class UsersController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data user berhasil diubah',
-                'data' => $data_user
+                'data' => $data_user,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data user gagal diubah',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function deleteUser($id) {
+    public function deleteUser($id)
+    {
         $user_exist = User::find($id);
 
         if ($user_exist) {
             User::where('id', $id)->delete();
-             return response()->json([
+
+            return response()->json([
                 'status' => 'success',
                 'message' => 'Data user berhasil dihapus',
             ], 200);
         }
+
         return response()->json([
             'status' => 'error',
             'message' => 'Data user tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 400);
-
-        
     }
 
-    public function deleteBulkUser(Request $request) {
+    public function deleteBulkUser(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
         ]);
@@ -189,7 +195,7 @@ class UsersController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data user gagal dihapus',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 }

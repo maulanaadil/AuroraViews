@@ -9,16 +9,17 @@ use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
-    public function getAnalytics(Request $request) {
+    public function getAnalytics(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'date' => 'required|date',
-            'office_id' => 'required|integer'
+            'office_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $validator->errors()
+                'message' => $validator->errors(),
             ], 400);
         }
 
@@ -30,27 +31,28 @@ class DashboardController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data berhasil ditemukan',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 404);
     }
 
-    public function getAnalyticCost(Request $request) {
+    public function getAnalyticCost(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'date' => 'required|date',
-            'office_id' => 'required|integer'
+            'office_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $validator->errors()
+                'message' => $validator->errors(),
             ], 400);
         }
 
@@ -60,27 +62,28 @@ class DashboardController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data berhasil ditemukan',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 404);
     }
 
-    public function getAnalyticsPencatatan(Request $request) {
+    public function getAnalyticsPencatatan(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'date' => 'required|date',
-            'office_id' => 'required|integer'
+            'office_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $validator->errors()
+                'message' => $validator->errors(),
             ], 400);
         }
 
@@ -94,14 +97,14 @@ class DashboardController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data berhasil ditemukan',
-                'data' => $data
+                'data' => $data,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 404);
     }
 }

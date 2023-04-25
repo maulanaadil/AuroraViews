@@ -10,43 +10,46 @@ use Illuminate\Support\Facades\Validator;
 
 class AlasanController extends Controller
 {
-    public function getAllAlasan() {
+    public function getAllAlasan()
+    {
         $data_alasan = DB::select('CALL sp_master_alasan_load();');
 
         if ($data_alasan) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data alasan berhasil diambil',
-                'data' => $data_alasan
+                'data' => $data_alasan,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data alasan gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function getAlasanById($id) {
+    public function getAlasanById($id)
+    {
         $data_alasan = Alasan::find($id);
 
         if ($data_alasan) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data alasan berhasil diambil',
-                'data' => $data_alasan
+                'data' => $data_alasan,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data alasan gagal diambil',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function addAlasan(Request $request) {
+    public function addAlasan(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'alasan' => 'required|string|max:255',
         ]);
@@ -55,7 +58,7 @@ class AlasanController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -67,18 +70,19 @@ class AlasanController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Data alasan berhasil ditambahkan',
-                'data' => $data_alasan
+                'data' => $data_alasan,
             ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'Data alasan gagal ditambahkan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function updateAlasan(Request $request, $id) {
+    public function updateAlasan(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'alasan' => 'required|string|max:255',
         ]);
@@ -87,17 +91,17 @@ class AlasanController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->first(),
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
         $alasan_exist = Alasan::find($id);
 
-        if (!$alasan_exist) {
+        if (! $alasan_exist) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Data alasan tidak ditemukan',
-                'data' => null
+                'data' => null,
             ], 400);
         }
 
@@ -115,11 +119,12 @@ class AlasanController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data alasan gagal diubah',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 
-    public function deleteAlasan($id) {
+    public function deleteAlasan($id)
+    {
         $alasan_exist = Alasan::find($id);
 
         if ($alasan_exist) {
@@ -134,7 +139,7 @@ class AlasanController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'Data alasan tidak ditemukan',
-            'data' => null
+            'data' => null,
         ], 400);
     }
 }
