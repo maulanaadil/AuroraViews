@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b7a81cf3032b99e41c45186e8cd1ebb",
+    "content-hash": "afc08bcf91c031d2535000429a1196e2",
     "packages": [
         {
             "name": "brick/math",
@@ -6430,56 +6430,6 @@
     ],
     "packages-dev": [
         {
-            "name": "andyabih/laravel-to-uml",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/andyabih/laravel-to-uml.git",
-                "reference": "d925215a7dbcaf813cabc8d83178e9f601c63b57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/andyabih/laravel-to-uml/zipball/d925215a7dbcaf813cabc8d83178e9f601c63b57",
-                "reference": "d925215a7dbcaf813cabc8d83178e9f601c63b57",
-                "shasum": ""
-            },
-            "require-dev": {
-                "orchestra/testbench": "6.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Andyabih\\LaravelToUML\\LaravelToUMLServiceProvider"
-                    ],
-                    "aliases": {
-                        "LaravelToUML": "Andyabih\\LaravelToUML\\Facades\\LaravelToUML"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Andyabih\\LaravelToUML\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andy Abi Haidar",
-                    "email": "andy@yllw.com"
-                }
-            ],
-            "description": "Automagically generate UML diagrams of your Laravel code.",
-            "support": {
-                "issues": "https://github.com/andyabih/laravel-to-uml/issues",
-                "source": "https://github.com/andyabih/laravel-to-uml/tree/1.0.3"
-            },
-            "time": "2021-04-07T07:32:11+00:00"
-        },
-        {
             "name": "cmgmyr/phploc",
             "version": "8.0.2",
             "source": {
@@ -8188,74 +8138,6 @@
                 }
             ],
             "time": "2022-09-10T08:44:15+00:00"
-        },
-        {
-            "name": "phpmetrics/phpmetrics",
-            "version": "v2.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpmetrics/PhpMetrics.git",
-                "reference": "4b77140a11452e63c7a9b98e0648320bf6710090"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpmetrics/PhpMetrics/zipball/4b77140a11452e63c7a9b98e0648320bf6710090",
-                "reference": "4b77140a11452e63c7a9b98e0648320bf6710090",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-tokenizer": "*",
-                "nikic/php-parser": "^3|^4",
-                "php": ">=5.5"
-            },
-            "replace": {
-                "halleck45/php-metrics": "*",
-                "halleck45/phpmetrics": "*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14",
-                "sebastian/comparator": ">=1.2.3",
-                "squizlabs/php_codesniffer": "^3.5",
-                "symfony/dom-crawler": "^3.0 || ^4.0 || ^5.0"
-            },
-            "bin": [
-                "bin/phpmetrics"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "./src/functions.php"
-                ],
-                "psr-0": {
-                    "Hal\\": "./src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jean-François Lépine",
-                    "email": "lepinejeanfrancois@yahoo.fr",
-                    "homepage": "http://www.lepine.pro",
-                    "role": "Copyright Holder"
-                }
-            ],
-            "description": "Static analyzer tool for PHP : Coupling, Cyclomatic complexity, Maintainability Index, Halstead's metrics... and more !",
-            "homepage": "http://www.phpmetrics.org",
-            "keywords": [
-                "analysis",
-                "qa",
-                "quality",
-                "testing"
-            ],
-            "support": {
-                "issues": "https://github.com/PhpMetrics/PhpMetrics/issues",
-                "source": "https://github.com/phpmetrics/PhpMetrics/tree/v2.8.2"
-            },
-            "time": "2023-03-08T15:03:36+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -11004,9 +10886,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "pdepend/pdepend": 0
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

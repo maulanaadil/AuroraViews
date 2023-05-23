@@ -14,7 +14,6 @@
         "reliese/laravel": "^1.2"
     },
     "require-dev": {
-        "andyabih/laravel-to-uml": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.5",
         "laravel/sail": "^1.0.1",
@@ -22,7 +21,6 @@
         "nunomaduro/collision": "^6.1",
         "nunomaduro/phpinsights": "^2.8",
         "phpmd/phpmd": "^2.13",
-        "phpmetrics/phpmetrics": "^2.8",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
