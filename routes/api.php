@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\AuthorizationController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\LaporanAnomaliController;
-use App\Http\Controllers\Api\OtorisasiController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\ProgressPencatatanMeterController;
@@ -87,9 +87,9 @@ Route::group([
         });
 
         Route::prefix('otorisasi')->group(function () {
-            Route::get('/', [OtorisasiController::class, 'getAllOtorisasi']);
-            Route::post('/add', [OtorisasiController::class, 'addOtorisasi']);
-            Route::delete('/{id}', [OtorisasiController::class, 'deleteOtorisasi']);
+            Route::get('/', [AuthorizationController::class, 'getAllAuthorization']);
+            Route::post('/add', [AuthorizationController::class, 'insertAuthorization']);
+            Route::delete('/{id}', [AuthorizationController::class, 'deleteAuthorization']);
         });
 
         Route::prefix('progress_pencatatan_meter')->group(function () {
