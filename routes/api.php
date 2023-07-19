@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\ProgressPencatatanMeterController;
 use App\Http\Controllers\Api\ProgressPencatatanPetugasController;
 use App\Http\Controllers\Api\ReasonController;
-use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -38,13 +38,10 @@ Route::group([
         });
 
         Route::prefix('users')->group(function () {
-            Route::get('/', [UsersController::class, 'getAllUsersByName']);
-            Route::get('/all', [UsersController::class, 'getAllUsers']);
-            Route::get('/{id}', [UsersController::class, 'getUserById']);
-            Route::post('/add', [UsersController::class, 'addUser']);
-            Route::post('/{id}/update', [UsersController::class, 'updateUser']);
-            Route::delete('/{id}', [UsersController::class, 'deleteUser']);
-            Route::post('/bulk_delete', [UsersController::class, 'deleteBulkUser']);
+            Route::get('/', [UserController::class, 'getAllUsers']);
+            Route::get('/{id}', [UserController::class, 'getUserById']);
+            Route::post('/add', [UserController::class, 'insertUser']);
+            Route::delete('/{id}', [UserController::class, 'deleteUser']);
         });
 
         Route::prefix('pemetaan_petugas')->group(function () {
