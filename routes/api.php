@@ -61,9 +61,9 @@ Route::group([
         });
 
         Route::prefix('dashboard')->group(function () {
-            Route::get('/analytics', [DashboardController::class, 'getAnalytics']);
-            Route::get('/analytics_price', [DashboardController::class, 'getAnalyticCost']);
-            Route::get('/analytics_pencatatan', [DashboardController::class, 'getAnalyticsPencatatan']);
+            Route::get('/analytics', [DashboardController::class, 'getAnalyticsOfficers']);
+            Route::get('/analytics_price', [DashboardController::class, 'getAnalyticsCosts']);
+            Route::get('/analytics_pencatatan', [DashboardController::class, 'getAnalyticsRecords']);
         });
 
         Route::prefix('baca_meter')->group(function () {
