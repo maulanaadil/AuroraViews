@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\Api\AuthorizationController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
@@ -17,12 +17,11 @@ Route::group([
     'prefix' => 'v1',
 ], function ($router) {
     Route::prefix('auth')->group(function () {
-        Route::post('/login', [AuthController::class, 'login']);
-        Route::post('/register', [AuthController::class, 'register']);
-        Route::post('/refresh', [AuthController::class, 'refresh']);
+        Route::post('/login', [AuthenticationController::class, 'login']);
+        Route::post('/register', [AuthenticationController::class, 'register']);
 
         Route::middleware('jwt.verify')->group(function () {
-            Route::post('/logout', [AuthController::class, 'logout']);
+            Route::post('/logout', [AuthenticationController::class, 'logout']);
         });
     });
 
