@@ -5,10 +5,8 @@ use App\Http\Controllers\Api\AuthorizationController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\LaporanAnomaliController;
+use App\Http\Controllers\Api\OfficerController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
-use App\Http\Controllers\Api\PetugasController;
-use App\Http\Controllers\Api\ProgressPencatatanMeterController;
-use App\Http\Controllers\Api\ProgressPencatatanPetugasController;
 use App\Http\Controllers\Api\ReasonController;
 use App\Http\Controllers\api\RecordAnalyticsController;
 use App\Http\Controllers\Api\UserController;
@@ -28,13 +26,11 @@ Route::group([
 
     Route::middleware('jwt.verify')->group(function () {
         Route::prefix('petugas')->group(function () {
-            Route::get('/', [PetugasController::class, 'getAllPetugasByName']);
-            Route::get('/all', [PetugasController::class, 'getAllPetugas']);
-            Route::get('/{id}', [PetugasController::class, 'getPetugasById']);
-            Route::post('/add', [PetugasController::class, 'addPetugas']);
-            Route::post('/{id}/update', [PetugasController::class, 'updatePetugas']);
-            Route::delete('/{id}', [PetugasController::class, 'deletePetugas']);
-            Route::post('/bulk_delete', [PetugasController::class, 'deleteBulkPetugas']);
+            Route::get('/', [OfficerController::class, 'getAllOfficer']);
+            Route::get('/{id}', [OfficerController::class, 'getOfficerById']);
+            Route::post('/add', [OfficerController::class, 'insertOfficer']);
+            Route::post('/{id}/update', [OfficerController::class, 'updateOfficer']);
+            Route::delete('/{id}', [OfficerController::class, 'deleteOfficer']);
         });
 
         Route::prefix('users')->group(function () {

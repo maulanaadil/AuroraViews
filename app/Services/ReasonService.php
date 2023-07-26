@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 
 class ReasonService
 {
-    private $reasonRepository;
+    protected $reasonRepository;
 
     public function __construct(ReasonRepository $reasonRepository)
     {
