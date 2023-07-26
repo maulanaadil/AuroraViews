@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PetugasController;
 use App\Http\Controllers\Api\ProgressPencatatanMeterController;
 use App\Http\Controllers\Api\ProgressPencatatanPetugasController;
 use App\Http\Controllers\Api\ReasonController;
+use App\Http\Controllers\api\RecordAnalyticsController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -88,12 +89,9 @@ Route::group([
             Route::delete('/{id}', [AuthorizationController::class, 'deleteAuthorization']);
         });
 
-        Route::prefix('progress_pencatatan_meter')->group(function () {
-            Route::get('/', [ProgressPencatatanMeterController::class, 'getProgressPercabang']);
-        });
-
-        Route::prefix('progress_pencatatan_petugas')->group(function () {
-            Route::get('/', [ProgressPencatatanPetugasController::class, 'getProgressPencatatan']);
+        Route::prefix('pencatatan')->group(function () {
+            Route::get('/record', [RecordAnalyticsController::class, 'getRecordProgress']);
+            Route::get('/office', [RecordAnalyticsController::class, 'getOfficeProgress']);
         });
     });
 });
