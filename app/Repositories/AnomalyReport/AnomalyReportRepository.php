@@ -11,10 +11,19 @@ class AnomalyReportRepository implements AnomalyReportRepositoryInterface
      */
     public function getExportDateDiffReport(array $payload)
     {
+        // get period from payload with key periode the convert it to month and year
         $period = $payload['periode'];
+
+        // get officeId from payload with key office_id
         $officeId = $payload['office_id'];
+
+        // get regionalId from payload with key regional_id
         $regionalId = $payload['regional_id'];
+
+        // get blockId from payload with key block_id
         $blockId = $payload['block_id'];
+
+        // get the month and year from the given period
         $month = date('m', strtotime($payload['periode']));
         $year = date('Y', strtotime($payload['periode']));
 
@@ -26,10 +35,19 @@ class AnomalyReportRepository implements AnomalyReportRepositoryInterface
      */
     public function getExportWaterUsage(array $payload)
     {
+        // get period from payload with key periode the convert it to month and year
         $period = $payload['periode'];
+
+        // get officeId from payload with key office_id
         $officeId = $payload['office_id'];
+
+        // get regionalId from payload with key regional_id
         $regionalId = $payload['regional_id'];
+
+        // get blockId from payload with key block_id
         $blockId = $payload['block_id'];
+
+        // get the month and year from the given period
         $month = date('m', strtotime($payload['periode']));
         $year = date('Y', strtotime($payload['periode']));
 
@@ -41,6 +59,7 @@ class AnomalyReportRepository implements AnomalyReportRepositoryInterface
      */
     public function getExportEqualWaterUsage(array $payload)
     {
+        // get the month and year from the given period
         $month = date('m', strtotime($payload['periode']));
         $year = date('Y', strtotime($payload['periode']));
 
@@ -52,10 +71,19 @@ class AnomalyReportRepository implements AnomalyReportRepositoryInterface
      */
     public function getExportOfMoreWaterUsage(array $payload)
     {
+        // get period from payload with key periode the convert it to month and year
         $period = $payload['periode'];
+
+        // get officeId from payload with key office_id
         $officeId = $payload['office_id'];
+
+        // get regionalId from payload with key regional_id
         $regionalId = $payload['regional_id'];
+
+        // get blockId from payload with key block_id
         $blockId = $payload['block_id'];
+
+        // get the month and year from the given period
         $month = date('m', strtotime($payload['periode']));
         $year = date('Y', strtotime($payload['periode']));
 

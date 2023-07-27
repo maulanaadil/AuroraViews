@@ -10,7 +10,6 @@ use App\Request\MappingOfficer\SelectBlockByIdRequest;
 use App\Request\MappingOfficer\SelectRegionalByIdRequest;
 use App\Response\ApiResponse;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
 
 class OfficerMappingService
@@ -42,13 +41,6 @@ class OfficerMappingService
                true,
                $this->officerMappingRepository->getSelectedRegionalById($request->validated()),
            );
-       } catch (ModelNotFoundException $exception) {
-           return ApiResponse::toJson(
-               'Data dengan id '.$request->validated()['regional_id'].' tidak ditemukan',
-               Response::HTTP_NOT_FOUND,
-               false,
-               null,
-           );
        } catch (Exception $exception) {
            return ApiResponse::toJson(
                $exception->getMessage(),
@@ -76,13 +68,6 @@ class OfficerMappingService
                true,
                $this->officerMappingRepository->getSelectedBlocksById($request->validated()),
            );
-       } catch (ModelNotFoundException $exception) {
-           return ApiResponse::toJson(
-               'Data dengan id '.$request->validated()['block_id'].' tidak ditemukan',
-               Response::HTTP_NOT_FOUND,
-               false,
-               null,
-           );
        } catch (Exception $exception) {
            return ApiResponse::toJson(
                $exception->getMessage(),
@@ -103,14 +88,16 @@ class OfficerMappingService
    public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $request)
    {
        try {
-           $block_ids = [];
+           // craete temporary array for block ids
+           $blockIds = [];
 
-           $officerId = $request->input('petugas_id');
+           // get selected area by officer id
+           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($request->input('petugas_id'));
 
-           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($officerId);
-
+           // loop selected area by officer id and push block id to temporary array
            foreach ($selectedAreaByOfficerId as $itemArea) {
-               $block_ids[] = $itemArea->block_id;
+               // push block id to temporary array
+               $blockIds[] = $itemArea->blockId;
            }
 
            return ApiResponse::toJson(
@@ -118,8 +105,8 @@ class OfficerMappingService
                Response::HTTP_OK,
                true,
                [
-                   'petugas' => $this->officerRepository->getOfficerById($officerId),
-                   'area' => $this->officerMappingRepository->getSelectedBlockByBulkId($block_ids),
+                   'petugas' => $this->officerRepository->getOfficerById($request->input('petugas_id')),
+                   'area' => $this->officerMappingRepository->getSelectedBlockByBulkId($blockIds),
                ]
            );
        } catch (Exception $exception) {
@@ -142,34 +129,6 @@ class OfficerMappingService
    public function insertMappingOfficer(FormMappingOfficerRequest $request)
    {
        try {
-           // check if officer data exist
-           if (empty($this->officerRepository->getOfficerById(
-               $request->validated()['petugas_id']
-           ))) {
-               throw new Exception('Data dengan id '.$request->validated()['petugas_id'].' tidak ditemukan', Response::HTTP_NOT_FOUND);
-           }
-
-           // check if regional data exist
-           if (empty($this->officerMappingRepository->getSelectedRegionalById(
-               $request->validated()['regional_id']
-           ))) {
-               throw new Exception('Data dengan id '.$request->validated()['regional_id'].' tidak ditemukan', Response::HTTP_NOT_FOUND);
-           }
-
-           // check if block data exist
-           if (empty($this->officerMappingRepository->getSelectedBlocksById(
-               $request->validated()['block_id']
-           ))) {
-               throw new Exception('Data dengan id '.$request->validated()['block_id'].' tidak ditemukan', Response::HTTP_NOT_FOUND);
-           }
-
-           // check if area data exist
-           if (! empty($this->officerMappingRepository->getSelectedAreaByOfficerId(
-               $request->validated()['petugas_id']
-           ))) {
-               throw new Exception('Data dengan id '.$request->validated()['petugas_id'].' sudah terdaftar', Response::HTTP_NOT_FOUND);
-           }
-
            return ApiResponse::toJson(
                'Data berhasil ditambahkan',
                Response::HTTP_CREATED,
@@ -197,6 +156,7 @@ class OfficerMappingService
     public function deleteMappingOfficer(string $mwriterAreaId)
     {
         try {
+            // query to delete mapping officer
             $this->officerMappingRepository->deleteMappingOfficer($mwriterAreaId);
 
             return ApiResponse::toJson(
@@ -205,17 +165,10 @@ class OfficerMappingService
                 true,
                 null,
             );
-        } catch (ModelNotFoundException $exception) {
-            return ApiResponse::toJson(
-                'Data dengan id '.$mwriterAreaId.' tidak ditemukan',
-                Response::HTTP_NOT_FOUND,
-                false,
-                null,
-            );
         } catch (Exception $exception) {
             return ApiResponse::toJson(
                 $exception->getMessage(),
-                Response::HTTP_INTERNAL_SERVER_ERROR,
+                $exception->getCode(), // Use the HTTP status code from the caught exception
                 false,
                 null,
             );

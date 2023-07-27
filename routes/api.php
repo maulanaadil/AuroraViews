@@ -3,10 +3,10 @@
 use App\Http\Controllers\api\AnomalyReportController;
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\Api\AuthorizationController;
-use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\OfficerController;
 use App\Http\Controllers\Api\OfficerMappingController;
+use App\Http\Controllers\Api\ReadMeterController;
 use App\Http\Controllers\Api\ReasonController;
 use App\Http\Controllers\api\RecordAnalyticsController;
 use App\Http\Controllers\Api\UserController;
@@ -63,10 +63,9 @@ Route::group([
         });
 
         Route::prefix('baca_meter')->group(function () {
-            Route::get('/', [BacaMeterController::class, 'index']);
-            Route::get('/search', [BacaMeterController::class, 'cariDataBacaMeter']);
-            Route::get('/info_pelanggan', [BacaMeterController::class, 'divinfopelangganAction']);
-            Route::get('/longlat_pelanggan', [BacaMeterController::class, 'divmapAction']);
+            Route::get('/', [ReadMeterController::class, 'getReadMeter']);
+            Route::get('/info_pelanggan', [ReadMeterController::class, 'getInfoCustomer']);
+            Route::get('/longlat_pelanggan', [ReadMeterController::class, 'getPositionCustomer']);
         });
 
         Route::prefix('laporan_anomali')->group(function () {
