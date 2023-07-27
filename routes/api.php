@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\api\AnomalyReportController;
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\Api\AuthorizationController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
-use App\Http\Controllers\Api\LaporanAnomaliController;
 use App\Http\Controllers\Api\OfficerController;
 use App\Http\Controllers\Api\PemetaanPetugasController;
 use App\Http\Controllers\Api\ReasonController;
@@ -71,12 +71,10 @@ Route::group([
         });
 
         Route::prefix('laporan_anomali')->group(function () {
-            Route::get('/export_laporan_selisih_tgl', [LaporanAnomaliController::class, 'exportexcel1Action']);
-            Route::get('/export_laporan_pemakaian', [LaporanAnomaliController::class, 'exportexcel1Action2']);
-            Route::get('/export_laporan_pemakaian_sama', [LaporanAnomaliController::class, 'exportexcel1Action3']);
-            Route::get('/export_laporan_lebih_tgl', [LaporanAnomaliController::class, 'exportexcel1Action4']);
-            Route::get('/select_regional', [LaporanAnomaliController::class, 'selectRegionalAction']);
-            Route::get('/select_block', [LaporanAnomaliController::class, 'selectBlocksAction']);
+            Route::get('/export_laporan_selisih_tgl', [AnomalyReportController::class, 'getExportDateDiffReport']);
+            Route::get('/export_laporan_pemakaian', [AnomalyReportController::class, 'getExportWaterUsage']);
+            Route::get('/export_laporan_pemakaian_sama', [AnomalyReportController::class, 'getExportEqualWaterUsage']);
+            Route::get('/export_laporan_lebih_tgl', [AnomalyReportController::class, 'getExportOfMoreWaterUsage']);
         });
 
         Route::prefix('otorisasi')->group(function () {
