@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\AuthorizationController;
 use App\Http\Controllers\Api\BacaMeterController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\OfficerController;
-use App\Http\Controllers\Api\PemetaanPetugasController;
+use App\Http\Controllers\Api\OfficerMappingController;
 use App\Http\Controllers\Api\ReasonController;
 use App\Http\Controllers\api\RecordAnalyticsController;
 use App\Http\Controllers\Api\UserController;
@@ -41,12 +41,11 @@ Route::group([
         });
 
         Route::prefix('pemetaan_petugas')->group(function () {
-            Route::get('/select_regional', [PemetaanPetugasController::class, 'getSelectRegional']);
-            Route::get('/select_blocks', [PemetaanPetugasController::class, 'getSelectBlocks']);
-            Route::get('/area_petugas', [PemetaanPetugasController::class, 'getAreaByPetugasId']);
-            Route::get('/data_jalan', [PemetaanPetugasController::class, 'getDataJalan']);
-            Route::post('/add', [PemetaanPetugasController::class, 'addPemetaanPetugas']);
-            Route::delete('/{id}', [PemetaanPetugasController::class, 'deletePemetaanPetugas']);
+            Route::get('/select_regional', [OfficerMappingController::class, 'getSelectedRegionalById']);
+            Route::get('/select_blocks', [OfficerMappingController::class, 'getSelectedBlocksById']);
+            Route::get('/area_petugas', [OfficerMappingController::class, 'getAreaByOfficerId']);
+            Route::post('/add', [OfficerMappingController::class, 'insertMappingOfficer']);
+            Route::delete('/{id}', [OfficerMappingController::class, 'deleteMappingOfficer']);
         });
 
         Route::prefix('alasan')->group(function () {
