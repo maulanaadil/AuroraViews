@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Request\MappingOfficer;
+namespace App\Request\Regional;
 
 use Illuminate\Foundation\Http\FormRequest;
 

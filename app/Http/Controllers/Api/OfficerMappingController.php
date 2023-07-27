@@ -3,19 +3,31 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Request\Block\SelectBlockByIdRequest;
 use App\Request\MappingOfficer\FormMappingOfficerRequest;
 use App\Request\MappingOfficer\SelectAreaByOfficerIdRequest;
-use App\Request\MappingOfficer\SelectBlockByIdRequest;
-use App\Request\MappingOfficer\SelectRegionalByIdRequest;
+use App\Request\Regional\SelectRegionalByIdRequest;
+use App\Services\AreaService;
+use App\Services\BlockService;
 use App\Services\OfficerMappingService;
+use App\Services\RegionalService;
 
 class OfficerMappingController extends Controller
 {
     protected $officerMappingService;
 
-    public function __construct(OfficerMappingService $officerMappingService)
+    protected $regionalService;
+
+    protected $blockService;
+
+    protected $areaService;
+
+    public function __construct(OfficerMappingService $officerMappingService, RegionalService $regionalService, BlockService $blockService, AreaService $areaService)
     {
         $this->officerMappingService = $officerMappingService;
+        $this->regionalService = $regionalService;
+        $this->blockService = $blockService;
+        $this->areaService = $areaService;
     }
 
     /**
@@ -23,7 +35,7 @@ class OfficerMappingController extends Controller
      */
     public function getSelectedRegionalById(SelectRegionalByIdRequest $request)
     {
-        $this->getSelectedRegionalById($request);
+        $this->regionalService->getSelectedRegionalById($request);
     }
 
     /**
@@ -31,7 +43,7 @@ class OfficerMappingController extends Controller
      */
     public function getSelectedBlocksById(SelectBlockByIdRequest $request)
     {
-        $this->getSelectedBlocksById($request);
+        $this->blockService->getSelectedBlocksById($request);
     }
 
     /**
@@ -39,7 +51,7 @@ class OfficerMappingController extends Controller
      */
     public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $request)
     {
-        $this->getAreaByOfficerId($request);
+        $this->areaService->getAreaByOfficerId($request);
     }
 
     /**
@@ -47,7 +59,7 @@ class OfficerMappingController extends Controller
      */
     public function insertMappingOfficer(FormMappingOfficerRequest $request)
     {
-        $this->insertMappingOfficer($request);
+        $this->officerMappingService->insertMappingOfficer($request);
     }
 
     /**
@@ -59,6 +71,6 @@ class OfficerMappingController extends Controller
      */
     public function deleteMappingOfficer(string $mappingOfficerId)
     {
-        $this->deleteMappingOfficer($mappingOfficerId);
+        $this->officerMappingService->deleteMappingOfficer($mappingOfficerId);
     }
 }

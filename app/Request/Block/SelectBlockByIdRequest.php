@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Request\MappingOfficer;
+namespace App\Request\Block;
 
 use Illuminate\Foundation\Http\FormRequest;
 
