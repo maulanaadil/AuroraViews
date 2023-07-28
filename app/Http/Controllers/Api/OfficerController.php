@@ -34,17 +34,17 @@ class OfficerController extends Controller
     /**
      * Store a newly created officer in storage.
      */
-    public function insertOfficer(OfficerRequest $request)
+    public function insertOfficer(OfficerRequest $requestData)
     {
-        return $this->officerService->insertOfficer($request);
+        return $this->officerService->insertOfficer($requestData);
     }
 
     /**
      * Update the specified officer in storage.
      */
-    public function updateOfficer(OfficerRequest $request, string $updateOfficer)
+    public function updateOfficer(OfficerRequest $requestData, string $updateOfficer)
     {
-        return $this->officerService->updateOfficer($request, $updateOfficer);
+        return $this->officerService->updateOfficer($requestData, $updateOfficer);
     }
 
     /**

@@ -26,10 +26,10 @@ class DashboardService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getAnalyticsOfficers(DashboardRequest $request)
+    public function getAnalyticsOfficers(DashboardRequest $requestData)
     {
         try {
-            $payload = $request->validated();
+            $payload = $requestData->validated();
             $data = $this->dashboardRepository->getAnalyticsOfficers($payload);
 
             return ApiResponse::toJson(
@@ -63,10 +63,10 @@ class DashboardService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getAnalyticsCosts(DashboardRequest $request)
+    public function getAnalyticsCosts(DashboardRequest $requestData)
     {
         try {
-            $payload = $request->validated();
+            $payload = $requestData->validated();
             $data = $this->dashboardRepository->getAnalyticsCosts($payload);
 
             return ApiResponse::toJson(
@@ -100,10 +100,10 @@ class DashboardService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getAnalyticsRecords(DashboardRequest $request)
+    public function getAnalyticsRecords(DashboardRequest $requestData)
     {
         try {
-            $payload = $request->validated();
+            $payload = $requestData->validated();
             $data = $this->dashboardRepository->getAnalyticsRecords($payload);
 
             return ApiResponse::toJson(

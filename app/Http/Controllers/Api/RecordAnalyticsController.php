@@ -19,16 +19,16 @@ class RecordAnalyticsController extends Controller
     /**
      * display all record progress data based on period and office
      */
-    public function getRecordProgress(RecordProgressAnalyticsRequest $request)
+    public function getRecordProgress(RecordProgressAnalyticsRequest $requestData)
     {
-        return $this->recordAnalyticsService->getRecordProgress($request);
+        return $this->recordAnalyticsService->getRecordProgress($requestData);
     }
 
     /**
      * display all record office progress data based on period and office
      */
-    public function getOfficeProgress(RecordOfficeProgressAnalyticsRequest $request)
+    public function getOfficeProgress(RecordOfficeProgressAnalyticsRequest $requestData)
     {
-        return $this->recordAnalyticsService->getOfficeProgress($request);
+        return $this->recordAnalyticsService->getOfficeProgress($requestData);
     }
 }

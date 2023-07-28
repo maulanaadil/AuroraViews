@@ -91,10 +91,10 @@ class ReasonService
      * @throws \Illuminate\Database\QueryException
      * @throws \Exception
      */
-    public function insertReason(ReasonRequest $request)
+    public function insertReason(ReasonRequest $requestData)
     {
         try {
-            $reason = $this->reasonRepository->insertReason($request->validated());
+            $reason = $this->reasonRepository->insertReason($requestData->validated());
 
             return ApiResponse::toJson(
                 'Data alasan berhasil ditambahkan',
@@ -120,10 +120,10 @@ class ReasonService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function updateReason(ReasonRequest $request, string $reasonId)
+    public function updateReason(ReasonRequest $requestData, string $reasonId)
     {
         try {
-            $reason = $this->reasonRepository->updateReason($request->validated(), $reasonId);
+            $reason = $this->reasonRepository->updateReason($requestData->validated(), $reasonId);
 
             return ApiResponse::toJson(
                 'Data alasan berhasil diubah',

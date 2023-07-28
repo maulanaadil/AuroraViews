@@ -15,7 +15,7 @@ class JWTMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $requestData, Closure $next)
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
@@ -25,6 +25,6 @@ class JWTMiddleware
         } catch (JWTException $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
-        return $next($request);
+        return $next($requestData);
     }
 }

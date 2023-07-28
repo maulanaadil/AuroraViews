@@ -32,14 +32,14 @@ class OfficerMappingService
     *
     * @throws \Exception
     */
-   public function insertMappingOfficer(FormMappingOfficerRequest $request)
+   public function insertMappingOfficer(FormMappingOfficerRequest $requestData)
    {
        try {
            return ApiResponse::toJson(
                'Data berhasil ditambahkan',
                Response::HTTP_CREATED,
                true,
-               $this->officerMappingRepository->insertMappingOfficer($request->validated())
+               $this->officerMappingRepository->insertMappingOfficer($requestData->validated())
            );
        } catch (Exception $exception) {
            return ApiResponse::toJson(

@@ -27,14 +27,14 @@ class RecordAnalyticsService
       * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
       * @throws \Exception
       */
-     public function getRecordProgress(RecordProgressAnalyticsRequest $request)
+     public function getRecordProgress(RecordProgressAnalyticsRequest $requestData)
      {
          try {
-             $isAuthorizeHublang = $request->id_hak == 2;
+             $isAuthorizeHublang = $requestData->id_hak == 2;
 
              //  if the id_hak is 2, then the user is hublang
              if ($isAuthorizeHublang) {
-                 $recordHublangProgress = $this->recordAnalyticsRepository->getHublangRecordProgress($request->validated());
+                 $recordHublangProgress = $this->recordAnalyticsRepository->getHublangRecordProgress($requestData->validated());
 
                  return ApiResponse::toJson(
                      'Data berhasil diambil',
@@ -45,7 +45,7 @@ class RecordAnalyticsService
              }
 
              //  if the id_hak is not 2, then the user is not hublang
-             $recordProgress = $this->recordAnalyticsRepository->getRecordProgress($request->validated());
+             $recordProgress = $this->recordAnalyticsRepository->getRecordProgress($requestData->validated());
 
              return ApiResponse::toJson(
                  'Data berhasil diambil',
@@ -78,14 +78,14 @@ class RecordAnalyticsService
       * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
       * @throws \Exception
       */
-     public function getOfficeProgress(RecordOfficeProgressAnalyticsRequest $request)
+     public function getOfficeProgress(RecordOfficeProgressAnalyticsRequest $requestData)
      {
          try {
-             $isAuthorizeHublang = $request->id_hak == 2;
+             $isAuthorizeHublang = $requestData->id_hak == 2;
 
              //  if the id_hak is 2, then the user is hublang
              if ($isAuthorizeHublang) {
-                 $recordHublangOfficeProgress = $this->recordAnalyticsRepository->getHublangOfficeProgress($request->validated());
+                 $recordHublangOfficeProgress = $this->recordAnalyticsRepository->getHublangOfficeProgress($requestData->validated());
 
                  return ApiResponse::toJson(
                      'Data berhasil diambil',
@@ -96,7 +96,7 @@ class RecordAnalyticsService
              }
 
              //  if the id_hak is not 2, then the user is not hublang
-             $recordOfficeProgress = $this->recordAnalyticsRepository->getOfficeProgress($request->validated());
+             $recordOfficeProgress = $this->recordAnalyticsRepository->getOfficeProgress($requestData->validated());
 
              return ApiResponse::toJson(
                  'Data berhasil diambil',

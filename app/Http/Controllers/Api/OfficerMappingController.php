@@ -33,33 +33,33 @@ class OfficerMappingController extends Controller
     /**
      * Display the specified regional.
      */
-    public function getSelectedRegionalById(SelectRegionalByIdRequest $request)
+    public function getSelectedRegionalById(SelectRegionalByIdRequest $requestData)
     {
-        $this->regionalService->getSelectedRegionalById($request);
+        $this->regionalService->getSelectedRegionalById($requestData);
     }
 
     /**
      * Display the specified block.
      */
-    public function getSelectedBlocksById(SelectBlockByIdRequest $request)
+    public function getSelectedBlocksById(SelectBlockByIdRequest $requestData)
     {
-        $this->blockService->getSelectedBlocksById($request);
+        $this->blockService->getSelectedBlocksById($requestData);
     }
 
     /**
      * Display the area data by officer id.
      */
-    public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $request)
+    public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $requestData)
     {
-        $this->areaService->getAreaByOfficerId($request);
+        $this->areaService->getAreaByOfficerId($requestData);
     }
 
     /**
      * Store a newly created mapping officer in storage..
      */
-    public function insertMappingOfficer(FormMappingOfficerRequest $request)
+    public function insertMappingOfficer(FormMappingOfficerRequest $requestData)
     {
-        $this->officerMappingService->insertMappingOfficer($request);
+        $this->officerMappingService->insertMappingOfficer($requestData);
     }
 
     /**

@@ -34,16 +34,16 @@ class ReasonController extends Controller
     /**
      * Store a newly created reason in storage.
      */
-    public function insertReason(ReasonRequest $request)
+    public function insertReason(ReasonRequest $requestData)
     {
-        return $this->reasonService->insertReason($request);
+        return $this->reasonService->insertReason($requestData);
     }
 
     /**
      * Update the specified reason in storage.
      */
-    public function updateReason(ReasonRequest $request, string $updateReason)
+    public function updateReason(ReasonRequest $requestData, string $updateReason)
     {
-        return $this->reasonService->updateReason($request, $updateReason);
+        return $this->reasonService->updateReason($requestData, $updateReason);
     }
 }

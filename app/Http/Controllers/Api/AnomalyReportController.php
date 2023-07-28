@@ -19,32 +19,32 @@ class AnomalyReportController extends Controller
     /**
      * handle get anomaly report that has date diff based on the given period range
      */
-    public function getExportDateDiffReport(AnomalyReportRequest $request)
+    public function getExportDateDiffReport(AnomalyReportRequest $requestData)
     {
-        return $this->anomalyReportService->getExportDateDiffReport($request);
+        return $this->anomalyReportService->getExportDateDiffReport($requestData);
     }
 
     /**
      * handle get anomaly report water usage based on the given period range
      */
-    public function getExportWaterUsage(AnomalyReportRequest $request)
+    public function getExportWaterUsage(AnomalyReportRequest $requestData)
     {
-        return $this->anomalyReportService->getExportWaterUsage($request);
+        return $this->anomalyReportService->getExportWaterUsage($requestData);
     }
 
     /**
      * handle get anomaly report equal water usage based on the given period range
      */
-    public function getExportEqualWaterUsage(AnomalyReportRequestOnlyPeriod $request)
+    public function getExportEqualWaterUsage(AnomalyReportRequestOnlyPeriod $requestData)
     {
-        return $this->anomalyReportService->getExportEqualWaterUsage($request);
+        return $this->anomalyReportService->getExportEqualWaterUsage($requestData);
     }
 
     /**
      * handle get anomaly report of more water usage based on the given period range
      */
-    public function getExportOfMoreWaterUsage(AnomalyReportRequest $request)
+    public function getExportOfMoreWaterUsage(AnomalyReportRequest $requestData)
     {
-        return $this->anomalyReportService->getExportOfMoreWaterUsage($request);
+        return $this->anomalyReportService->getExportOfMoreWaterUsage($requestData);
     }
 }

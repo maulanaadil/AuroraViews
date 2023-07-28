@@ -26,9 +26,9 @@ class AuthorizationController extends Controller
     /**
      * Store a newly created authorization in storage.
      */
-    public function insertAuthorization(AuthorizationRequest $request)
+    public function insertAuthorization(AuthorizationRequest $requestData)
     {
-        return $this->authorizationService->insertAuthorization($request);
+        return $this->authorizationService->insertAuthorization($requestData);
     }
 
     /**

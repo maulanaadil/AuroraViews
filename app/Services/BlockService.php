@@ -25,14 +25,14 @@ class BlockService
     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
     * @throws \Exception
     */
-   public function getSelectedBlocksById(SelectBlockByIdRequest $request)
+   public function getSelectedBlocksById(SelectBlockByIdRequest $requestData)
    {
        try {
            return ApiResponse::toJson(
                'Data block berhasil diambil',
                Response::HTTP_OK,
                true,
-               $this->blockRepository->getSelectedBlocksById($request->validated()),
+               $this->blockRepository->getSelectedBlocksById($requestData->validated()),
            );
        } catch (Exception $exception) {
            return ApiResponse::toJson(
@@ -52,14 +52,14 @@ class BlockService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getSelectedBlockById(SelectBlockByIdRequest $request)
+    public function getSelectedBlockById(SelectBlockByIdRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data block berhasil diambil',
                 Response::HTTP_OK,
                 true,
-                $this->blockRepository->getSelectedBlockByBulkId($request->validated()),
+                $this->blockRepository->getSelectedBlockByBulkId($requestData->validated()),
             );
         } catch (Exception $exception) {
             return ApiResponse::toJson(
