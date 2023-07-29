@@ -20,3 +20,4 @@ yarn-error.log
 rulesets.xml
 sum.csv
 /report
+/before-refactor-report
