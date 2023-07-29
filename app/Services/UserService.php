@@ -83,10 +83,10 @@ class UserService
      *
      * @throws \Exception
      */
-    public function insertUser(UserRequest $request)
+    public function insertUser(UserRequest $requestData)
     {
         try {
-            $user = $this->userRepository->insertUser($request->validated());
+            $user = $this->userRepository->insertUser($requestData->validated());
 
             return ApiResponse::toJson(
                 'Data user berhasil ditambahkan',

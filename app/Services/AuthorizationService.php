@@ -90,10 +90,10 @@ class AuthorizationService
      *
      * @throws \Exception
      */
-    public function insertAuthorization(AuthorizationRequest $request)
+    public function insertAuthorization(AuthorizationRequest $requestData)
     {
         try {
-            $newDataAuthorization = $request->validated();
+            $newDataAuthorization = $requestData->validated();
             $authorization = $this->authorizationRepository->insertAuthorization($newDataAuthorization);
 
             return ApiResponse::toJson(

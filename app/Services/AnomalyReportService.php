@@ -27,14 +27,14 @@ class AnomalyReportService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getExportDateDiffReport(AnomalyReportRequest $request)
+    public function getExportDateDiffReport(AnomalyReportRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data anomali berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->anomalyRepository->getExportDateDiffReport($request->validated())
+                $this->anomalyRepository->getExportDateDiffReport($requestData->validated())
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(
@@ -61,14 +61,14 @@ class AnomalyReportService
       * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
       * @throws \Exception
       */
-     public function getExportWaterUsage(AnomalyReportRequest $request)
+     public function getExportWaterUsage(AnomalyReportRequest $requestData)
      {
          try {
              return ApiResponse::toJson(
                  'Data anomali berhasil ditemukan',
                  Response::HTTP_OK,
                  true,
-                 $this->anomalyRepository->getExportWaterUsage($request->validated()),
+                 $this->anomalyRepository->getExportWaterUsage($requestData->validated()),
              );
          } catch (ModelNotFoundException $exception) {
              return ApiResponse::toJson(
@@ -95,14 +95,14 @@ class AnomalyReportService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getExportEqualWaterUsage(AnomalyReportRequestOnlyPeriod $request)
+    public function getExportEqualWaterUsage(AnomalyReportRequestOnlyPeriod $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data anomali berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->anomalyRepository->getExportEqualWaterUsage($request->validated()),
+                $this->anomalyRepository->getExportEqualWaterUsage($requestData->validated()),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(
@@ -129,14 +129,14 @@ class AnomalyReportService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getExportOfMoreWaterUsage(AnomalyReportRequest $request)
+    public function getExportOfMoreWaterUsage(AnomalyReportRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data anomali berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->anomalyRepository->getExportOfMoreWaterUsage($request->validated()),
+                $this->anomalyRepository->getExportOfMoreWaterUsage($requestData->validated()),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(

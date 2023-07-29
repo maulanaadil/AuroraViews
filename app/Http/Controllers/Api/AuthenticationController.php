@@ -19,16 +19,16 @@ class AuthenticationController extends Controller
     /**
      * handle login user
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $requestData)
     {
-        return $this->authenticationService->login($request);
+        return $this->authenticationService->login($requestData);
     }
 
     /**
      * handle register user
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $requestData)
     {
-        return $this->authenticationService->register($request);
+        return $this->authenticationService->register($requestData);
     }
 }

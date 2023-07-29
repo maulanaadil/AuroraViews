@@ -20,24 +20,24 @@ class ReadMeterController extends Controller
    /**
     * Handle get read meter data by office id
     */
-   public function getReadMeter(FormReadMeterRequest $request)
+   public function getReadMeter(FormReadMeterRequest $requestData)
    {
-       return $this->readMeterService->getReadMeter($request);
+       return $this->readMeterService->getReadMeter($requestData);
    }
 
    /**
     * Handle get info customer and limit the result by limit
     */
-   public function getInfoCustomer(LimitGetInfoCustomerRequest $request)
+   public function getInfoCustomer(LimitGetInfoCustomerRequest $requestData)
    {
-       return $this->readMeterService->getInfoCustomer($request);
+       return $this->readMeterService->getInfoCustomer($requestData);
    }
 
    /**
     * Handle get info position customer by customer code and bill mergeym
     */
-   public function getPositionCustomer(FormGetPositionCustomerRequest $request)
+   public function getPositionCustomer(FormGetPositionCustomerRequest $requestData)
    {
-       return $this->readMeterService->getPositionCustomer($request);
+       return $this->readMeterService->getPositionCustomer($requestData);
    }
 }

@@ -86,14 +86,14 @@ class OfficerService
      * @throws \Illuminate\Database\QueryException
      * @throws \Exception
      */
-    public function insertOfficer(OfficerRequest $request)
+    public function insertOfficer(OfficerRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data petugas berhasil ditambahkan',
                 201,
                 true,
-                $this->officerRepository->insertOfficer($request->validated()),
+                $this->officerRepository->insertOfficer($requestData->validated()),
             );
         } catch (Exception $exception) {
             return ApiResponse::toJson(
@@ -113,14 +113,14 @@ class OfficerService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function updateOfficer(OfficerRequest $request, string $officerId)
+    public function updateOfficer(OfficerRequest $requestData, string $officerId)
     {
         try {
             return ApiResponse::toJson(
                 'Data petugas berhasil diubah',
                 Response::HTTP_OK,
                 true,
-                $this->officerRepository->updateOfficer($request->validated(), $officerId),
+                $this->officerRepository->updateOfficer($requestData->validated(), $officerId),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(

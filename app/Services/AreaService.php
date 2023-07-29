@@ -32,14 +32,14 @@ class AreaService
     *
     * @throws \Exception
     */
-   public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $request)
+   public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $requestData)
    {
        try {
            // craete temporary array for block ids
            $blockIds = [];
 
            // get selected area by officer id
-           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($request->input('petugas_id'));
+           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($requestData->input('petugas_id'));
 
            // loop selected area by officer id and push block id to temporary array
            foreach ($selectedAreaByOfficerId as $itemArea) {
@@ -53,7 +53,7 @@ class AreaService
                true,
                [
                    // get officer data by officer id
-                   'petugas' => $this->officerRepository->getOfficerById($request->input('petugas_id')),
+                   'petugas' => $this->officerRepository->getOfficerById($requestData->input('petugas_id')),
                    // get selected block by block ids
                    'area' => $this->blockRepository->getSelectedBlockByBulkId($blockIds),
                ]

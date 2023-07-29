@@ -34,9 +34,9 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      */
-    public function insertUser(UserRequest $request)
+    public function insertUser(UserRequest $requestData)
     {
-        return $this->userService->insertUser($request);
+        return $this->userService->insertUser($requestData);
     }
 
     /**

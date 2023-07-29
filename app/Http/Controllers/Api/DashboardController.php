@@ -18,24 +18,24 @@ class DashboardController extends Controller
     /**
      * handle get analytics officers
      */
-    public function getAnalyticsOfficers(DashboardRequest $request)
+    public function getAnalyticsOfficers(DashboardRequest $requestData)
     {
-        return $this->dashboardService->getAnalyticsOfficers($request);
+        return $this->dashboardService->getAnalyticsOfficers($requestData);
     }
 
     /**
      * handle get analytics costs
      */
-    public function getAnalyticsCosts(DashboardRequest $request)
+    public function getAnalyticsCosts(DashboardRequest $requestData)
     {
-        return $this->dashboardService->getAnalyticsCosts($request);
+        return $this->dashboardService->getAnalyticsCosts($requestData);
     }
 
     /**
      * handle get analytics records
      */
-    public function getAnalyticsRecords(DashboardRequest $request)
+    public function getAnalyticsRecords(DashboardRequest $requestData)
     {
-        return $this->dashboardService->getAnalyticsRecords($request);
+        return $this->dashboardService->getAnalyticsRecords($requestData);
     }
 }

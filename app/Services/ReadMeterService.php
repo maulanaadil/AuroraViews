@@ -28,7 +28,7 @@ class ReadMeterService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getReadMeter(FormReadMeterRequest $request)
+    public function getReadMeter(FormReadMeterRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
@@ -37,7 +37,7 @@ class ReadMeterService
                 true,
                 [
                     'rates_meter' => $this->readMeterRepository->loadRatesMeter(),
-                    'offices' => $this->readMeterRepository->getOfficeById($request->validated()['office_id']),
+                    'offices' => $this->readMeterRepository->getOfficeById($requestData->validated()['office_id']),
                 ],
             );
         } catch (ModelNotFoundException $exception) {
@@ -65,14 +65,14 @@ class ReadMeterService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getInfoCustomer(LimitGetInfoCustomerRequest $request)
+    public function getInfoCustomer(LimitGetInfoCustomerRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->readMeterRepository->getInfoCustomer($request->validated()['limit']),
+                $this->readMeterRepository->getInfoCustomer($requestData->validated()['limit']),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(
@@ -99,14 +99,14 @@ class ReadMeterService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Exception
      */
-    public function getPositionCustomer(FormGetPositionCustomerRequest $request)
+    public function getPositionCustomer(FormGetPositionCustomerRequest $requestData)
     {
         try {
             return ApiResponse::toJson(
                 'Data berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->readMeterRepository->getPositionCustomer($request->validated()),
+                $this->readMeterRepository->getPositionCustomer($requestData->validated()),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(
