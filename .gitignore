@@ -21,3 +21,4 @@ rulesets.xml
 sum.csv
 /report
 /before-refactor-report
+report-after-refactor.csv
