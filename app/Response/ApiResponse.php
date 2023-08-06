@@ -4,7 +4,13 @@ namespace App\Response;
 
 use GuzzleHttp\Psr7\Response;
 
-class ApiResponse
+// Abstract class or interface defining the Factory Method
+abstract class ResponseFactory
+{
+    abstract public static function toJson(string $message, int $statusCode, bool $status, $data): Response;
+}
+
+class ApiResponse extends ResponseFactory
 {
     /**
      * Generate JSON response

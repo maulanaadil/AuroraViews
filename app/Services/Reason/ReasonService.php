@@ -2,7 +2,7 @@
 
 namespace App\Services\Reason;
 
-use App\Repositories\Reason\ReasonRepository;
+use App\Repositories\Reason\ReasonRepositoryInterface;
 use App\Request\ReasonRequest;
 use App\Response\ApiResponse;
 use Exception;
@@ -13,7 +13,7 @@ class ReasonService extends AbstractReasonService
 {
     protected $reasonRepository;
 
-    public function __construct(ReasonRepository $reasonRepository)
+    public function __construct(ReasonRepositoryInterface $reasonRepository)
     {
         $this->reasonRepository = $reasonRepository;
     }
