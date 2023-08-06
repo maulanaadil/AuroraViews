@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Reason;
 
 use App\Repositories\Reason\ReasonRepository;
 use App\Request\ReasonRequest;
@@ -9,7 +9,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
 
-class ReasonService
+class ReasonService extends AbstractReasonService
 {
     protected $reasonRepository;
 

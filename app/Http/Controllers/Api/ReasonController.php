@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Request\ReasonRequest;
-use App\Services\ReasonService;
+use App\Services\Reason\ReasonService;
 
 class ReasonController extends Controller
 {
