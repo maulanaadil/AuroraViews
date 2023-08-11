@@ -14,15 +14,9 @@ class OfficerMappingService
 {
     protected $officerMappingRepository;
 
-    protected $officerRepository;
-
-    protected $blockRepository;
-
-    public function __construct(OfficerMappingRepository $officerMappingRepository, OfficerRepository $officerRepository, BlockRepository $blockRepository)
+    public function __construct(OfficerMappingRepository $officerMappingRepository)
     {
         $this->officerMappingRepository = $officerMappingRepository;
-        $this->officerRepository = $officerRepository;
-        $this->blockRepository = $blockRepository;
     }
 
    /**
