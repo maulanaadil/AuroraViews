@@ -17,7 +17,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         $year = date('Y', strtotime($payload['date']));
         $officeId = $payload['office_id'];
 
-        return DB::select("Call sp_grafik_pencatatanpetugas($month,$year,$officeId);");
+        return DB::select("Call sp_grafik_pencatatan_petugas($month,$year,$officeId);");
     }
 
     /**
