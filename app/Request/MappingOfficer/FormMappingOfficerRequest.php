@@ -24,7 +24,7 @@ class FormMappingOfficerRequest extends FormRequest
     public function rules()
     {
         return [
-            'petugas_id' => 'required|integer',
+            'writer_id' => 'required|integer',
             'block_id' => 'required|integer',
             'rgn_id' => 'required|integer',
             'of_id' => 'required|integer',

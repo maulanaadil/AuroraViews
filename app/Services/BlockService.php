@@ -32,7 +32,7 @@ class BlockService
                'Data block berhasil diambil',
                Response::HTTP_OK,
                true,
-               $this->blockRepository->getSelectedBlocksById($requestData->validated()),
+               $this->blockRepository->getSelectedBlocksById($requestData['block_id']),
            );
        } catch (Exception $exception) {
            return ApiResponse::toJson(

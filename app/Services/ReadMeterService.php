@@ -72,7 +72,7 @@ class ReadMeterService
                 'Data berhasil ditemukan',
                 Response::HTTP_OK,
                 true,
-                $this->readMeterRepository->getInfoCustomer($requestData->validated()['limit']),
+                $this->readMeterRepository->getInfoCustomer($requestData),
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(

@@ -27,7 +27,7 @@ class OfficerRepository implements OfficerRepositoryInterface
      */
     public function getOfficerById(string $officerId): MWriter
     {
-        return $this->officerModel->where('writer_id', $officerId)->first();
+        return $this->officerModel->where('writer_id', $officerId)->firstOrFail();
     }
 
     /**

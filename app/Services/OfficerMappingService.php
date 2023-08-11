@@ -44,7 +44,7 @@ class OfficerMappingService
        } catch (Exception $exception) {
            return ApiResponse::toJson(
                $exception->getMessage(),
-               $exception->getCode(), // Use the HTTP status code from the caught exception
+               Response::HTTP_INTERNAL_SERVER_ERROR, // Use the HTTP status code from the caught exception
                false,
                null
            );
@@ -73,7 +73,7 @@ class OfficerMappingService
         } catch (Exception $exception) {
             return ApiResponse::toJson(
                 $exception->getMessage(),
-                $exception->getCode(), // Use the HTTP status code from the caught exception
+                Response::HTTP_INTERNAL_SERVER_ERROR, // Use the HTTP status code from the caught exception
                 false,
                 null,
             );

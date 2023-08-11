@@ -20,9 +20,9 @@ class OfficerMappingRepository implements OfficerMappingRepositoryInterface
      /**
       * Query all selected area data
       */
-     public function getSelectedAreaByOfficerId(string $officerId): MWriterArea
+     public function getSelectedAreaByOfficerId(string $officerId)
      {
-         return $this->mwriterAreaModel->findOrFail($officerId);
+         return $this->mwriterAreaModel->where('writer_id', $officerId)->get();
      }
 
     /**

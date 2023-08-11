@@ -28,7 +28,7 @@ class DashboardRepository implements DashboardRepositoryInterface
     public function getAnalyticsCosts(array $payload)
     {
         $date = $payload['date'];
-        $officeId = $payload['office_id'] ?? 0;
+        $officeId = $payload['office_id'];
 
         return DB::select("Call sp_statistikcost_dashboard($date,$officeId);");
     }

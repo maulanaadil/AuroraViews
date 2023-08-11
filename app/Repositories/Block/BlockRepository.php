@@ -16,15 +16,15 @@ class BlockRepository implements BlockRepositoryInterface
      /**
       * Query all selected block data
       */
-     public function getSelectedBlocksById(string $blockId): Block
+     public function getSelectedBlocksById(string $blockId)
      {
-         return $this->blockModel->findOrFail($blockId);
+         return $this->blockModel->where('block_id', $blockId)->firstOrFail();
      }
 
     /**
      * Query selected block data by bulk id
      */
-    public function getSelectedBlockByBulkId(array $bulkId): Block
+    public function getSelectedBlockByBulkId(array $bulkId)
     {
         return $this->blockModel->whereIn('block_id', $bulkId)->get();
     }

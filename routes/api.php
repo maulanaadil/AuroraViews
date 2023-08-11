@@ -41,7 +41,7 @@ Route::group([
         });
 
         Route::prefix('pemetaan_petugas')->group(function () {
-            Route::get('/select_regional', [OfficerMappingController::class, 'getSelectedRegionalById']);
+            Route::get('/select_regional/{id}', [OfficerMappingController::class, 'getSelectedRegionalById']);
             Route::get('/select_blocks', [OfficerMappingController::class, 'getSelectedBlocksById']);
             Route::get('/area_petugas', [OfficerMappingController::class, 'getAreaByOfficerId']);
             Route::post('/add', [OfficerMappingController::class, 'insertMappingOfficer']);

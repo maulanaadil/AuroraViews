@@ -6,7 +6,7 @@ use App\Models\MWriterArea;
 
 interface OfficerMappingRepositoryInterface
 {
-    public function getSelectedAreaByOfficerId(string $officerId): MWriterArea;
+    public function getSelectedAreaByOfficerId(string $officerId);
 
     public function insertMappingOfficer(array $newDataMappingOfficer): MWriterArea;
 

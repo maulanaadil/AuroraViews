@@ -8,7 +8,7 @@ interface ReadMeterRepositoryInterface
 
     public function getOfficeById(int $officeId);
 
-    public function getInfoCustomer(array $payload);
+    public function getInfoCustomer(object $payload);
 
     public function getPositionCustomer(array $payload);
 }

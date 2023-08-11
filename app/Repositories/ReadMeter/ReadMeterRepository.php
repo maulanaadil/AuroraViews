@@ -26,7 +26,7 @@ class ReadMeterRepository implements ReadMeterRepositoryInterface
     /**
      * Query to load info customer data, and limit the result by limit
      */
-    public function getInfoCustomer(array $payload)
+    public function getInfoCustomer(object $payload)
     {
         return Billing::select(
             'bill_mergeym',

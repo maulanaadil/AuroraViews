@@ -18,6 +18,6 @@ class RegionalRepository implements RegionalRepositoryInterface
       */
      public function getSelectedRegionalById(string $regionalId): Regional
      {
-         return $this->regionalModel->findOrFail($regionalId);
+         return $this->regionalModel->where('rgn_id', $regionalId)->firstOrFail();
      }
 }

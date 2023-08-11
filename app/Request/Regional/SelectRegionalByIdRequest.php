@@ -24,7 +24,8 @@ class SelectRegionalByIdRequest extends FormRequest
     public function rules()
     {
         return [
-            'regional_id' => 'required|integer',
+            
+            'regional_id' => 'required|string',
         ];
     }
 }

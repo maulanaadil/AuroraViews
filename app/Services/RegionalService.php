@@ -25,14 +25,14 @@ class RegionalService
     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
     * @throws \Exception
     */
-   public function getSelectedRegionalById(SelectRegionalByIdRequest $requestData)
+   public function getSelectedRegionalById(string $regionalId)
    {
        try {
            return ApiResponse::toJson(
                'Data regional berhasil diambil',
                Response::HTTP_OK,
                true,
-               $this->regionalRepository->getSelectedRegionalById($requestData->validated()),
+               $this->regionalRepository->getSelectedRegionalById($regionalId),
            );
        } catch (Exception $exception) {
            return ApiResponse::toJson(

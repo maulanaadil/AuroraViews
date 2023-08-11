@@ -33,9 +33,9 @@ class OfficerMappingController extends Controller
     /**
      * Display the specified regional.
      */
-    public function getSelectedRegionalById(SelectRegionalByIdRequest $requestData)
+    public function getSelectedRegionalById(string $regionalId)
     {
-        $this->regionalService->getSelectedRegionalById($requestData);
+        return $this->regionalService->getSelectedRegionalById($regionalId);
     }
 
     /**
@@ -43,7 +43,7 @@ class OfficerMappingController extends Controller
      */
     public function getSelectedBlocksById(SelectBlockByIdRequest $requestData)
     {
-        $this->blockService->getSelectedBlocksById($requestData);
+       return $this->blockService->getSelectedBlocksById($requestData);
     }
 
     /**
@@ -51,7 +51,7 @@ class OfficerMappingController extends Controller
      */
     public function getAreaByOfficerId(SelectAreaByOfficerIdRequest $requestData)
     {
-        $this->areaService->getAreaByOfficerId($requestData);
+        return $this->areaService->getAreaByOfficerId($requestData);
     }
 
     /**
@@ -59,7 +59,7 @@ class OfficerMappingController extends Controller
      */
     public function insertMappingOfficer(FormMappingOfficerRequest $requestData)
     {
-        $this->officerMappingService->insertMappingOfficer($requestData);
+       return  $this->officerMappingService->insertMappingOfficer($requestData);
     }
 
     /**
@@ -71,6 +71,6 @@ class OfficerMappingController extends Controller
      */
     public function deleteMappingOfficer(string $mappingOfficerId)
     {
-        $this->officerMappingService->deleteMappingOfficer($mappingOfficerId);
+        return $this->officerMappingService->deleteMappingOfficer($mappingOfficerId);
     }
 }

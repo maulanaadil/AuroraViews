@@ -39,12 +39,12 @@ class AreaService
            $blockIds = [];
 
            // get selected area by officer id
-           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($requestData->input('petugas_id'));
+           $selectedAreaByOfficerId = $this->officerMappingRepository->getSelectedAreaByOfficerId($requestData['petugas_id']);
 
            // loop selected area by officer id and push block id to temporary array
            foreach ($selectedAreaByOfficerId as $itemArea) {
                // push block id to temporary array
-               $blockIds[] = $itemArea->blockId;
+                array_push($blockIds, $itemArea->block_id);
            }
 
            return ApiResponse::toJson(
@@ -53,7 +53,7 @@ class AreaService
                true,
                [
                    // get officer data by officer id
-                   'petugas' => $this->officerRepository->getOfficerById($requestData->input('petugas_id')),
+                   'petugas' => $this->officerRepository->getOfficerById($requestData['petugas_id']),
                    // get selected block by block ids
                    'area' => $this->blockRepository->getSelectedBlockByBulkId($blockIds),
                ]
