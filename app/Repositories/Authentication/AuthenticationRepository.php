@@ -26,6 +26,11 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
      */
     public function register(array $data)
     {
-        return $this->userModel->create($data);
+        return $this->userModel->create([
+            'nama' => $data['nama'],
+            'username' => $data['username'],
+            'password' => bcrypt($data['password']),
+            'hak' => $data['hak'],
+        ]);
     }
 }

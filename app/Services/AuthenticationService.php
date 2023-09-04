@@ -3,20 +3,25 @@
 namespace App\Services;
 
 use App\Repositories\Authentication\AuthenticationRepository;
+use App\Repositories\User\UserRepository;
 use App\Request\Authentication\LoginRequest;
 use App\Request\Authentication\RegisterRequest;
 use App\Response\ApiResponse;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticationService
 {
     protected $authenticationRepository;
 
-    public function __construct(AuthenticationRepository $authenticationRepository)
+    protected $userRepository;
+
+    public function __construct(AuthenticationRepository $authenticationRepository, UserRepository $userRepository)
     {
         $this->authenticationRepository = $authenticationRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -30,29 +35,44 @@ class AuthenticationService
     public function login(LoginRequest $credentials)
     {
         try {
-            $authCredentials = $credentials->validated();
+            // Validate the input credentials using the LoginRequest class
+            $validatedCredentials = $credentials->validated();
 
-            $authentication = $this->authenticationRepository->login($authCredentials);
+            // Find the user by their username
+            $user = $this->userRepository->getUserByUsername($validatedCredentials['username']);
+
+            // Check if the provided password is correct
+            if (Hash::check($validatedCredentials['password'], $user->password) === false) {
+                return ApiResponse::toJson(
+                    'Username atau password salah',
+                    Response::HTTP_UNAUTHORIZED,
+                    false,
+                    null
+                );
+            }
+
+            // If the password is correct, perform the login and return a success response
+            $authentication = $this->authenticationRepository->login($validatedCredentials);
 
             return ApiResponse::toJson(
                 'Login berhasil',
                 Response::HTTP_OK,
                 true,
-                $authentication,
+                $authentication
             );
         } catch (ModelNotFoundException $exception) {
             return ApiResponse::toJson(
-                'Username atau password salah',
+                'Username tidak ditemukan',
                 Response::HTTP_NOT_FOUND,
                 false,
-                null,
+                null
             );
         } catch (Exception $exception) {
             return ApiResponse::toJson(
                 $exception->getMessage(),
                 Response::HTTP_INTERNAL_SERVER_ERROR,
                 false,
-                null,
+                null
             );
         }
     }
