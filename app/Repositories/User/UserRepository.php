@@ -47,4 +47,12 @@ class UserRepository implements UserRepositoryInterface
 
         return $user->delete();
     }
+
+    /**
+     * Get user by name
+     */
+    public function getUserByUsername(string $username): User
+    {
+        return $this->userModel->where('username', $username)->firstOrFail();
+    }
 }

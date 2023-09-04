@@ -38,7 +38,7 @@ class UserTest extends TestCase
 
    public function testGetUserById()
    {
-       $userId = 16;
+       $userId = 1;
        $officers = new UserRepository(
            new User()
        );
